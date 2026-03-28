@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - MarketPlace</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏪 MarketPlace</h1>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="dashboard.html">Vender</a>
+                <a href="perfil.html">Mi Perfil</a>
+                <button id="cartBtn" class="cart-button">🛒 Carrito (<span id="cartCount">0</span>)</button>
+                <button id="authButton" class="btn-primary">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="profile-container">
+            <h2>👤 Mi Perfil</h2>
+            
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <div class="avatar-placeholder">👤</div>
+                </div>
+                
+                <form id="perfilForm" class="profile-form">
+                    <div class="form-group">
+                        <label>Nombre completo</label>
+                        <input type="text" id="nombre" class="form-control" placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo electrónico</label>
+                        <input type="email" id="email" disabled class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono de contacto</label>
+                        <input type="tel" id="telefono" class="form-control" placeholder="+34 123 456 789">
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección (opcional)</label>
+                        <input type="text" id="direccion" class="form-control" placeholder="Tu dirección para envíos">
+                    </div>
+                    <button type="button" onclick="actualizarPerfil()" class="btn-primary">Actualizar Perfil</button>
+                </form>
+            </div>
+            
+            <div id="mensaje" style="margin-top: 20px;"></div>
+            
+            <div class="mi-historial">
+                <h3>📜 Mi Historial de Compras</h3>
+                <div id="historialCompras" class="historial-list">
+                    <p class="loading">Cargando historial...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal del Carrito -->
+    <div id="cartModal" class="modal" style="display:none">
+        <div class="modal-content cart-modal">
+            <span class="close" onclick="cerrarModal('cartModal')">&times;</span>
+            <h2>🛒 Mi Carrito de Compras</h2>
+            <div id="cartItems" class="cart-items"></div>
+            <div id="cartTotal" class="cart-total"></div>
+            <button id="checkoutBtn" class="btn-primary btn-checkout" onclick="procesarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 MarketPlace - Todos los derechos reservados</p>
+            <p>Plataforma de compra y venta segura</p>
+        </div>
+    </footer>
+    
+    <script src="perfil.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

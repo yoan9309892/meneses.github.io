@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda - MarketPlace</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏪 MarketPlace</h1>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="dashboard.html">Vender</a>
+                <a href="perfil.html">Mi Perfil</a>
+                <button id="cartBtn" class="cart-button">🛒 Carrito (<span id="cartCount">0</span>)</button>
+                <button id="authButton" class="btn-primary">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h2>📦 Mi Panel de Ventas</h2>
+            <button onclick="mostrarFormularioProducto()" class="btn-primary btn-large">+ Publicar Nuevo Producto</button>
+        </div>
+        
+        <div class="stats-cards">
+            <div class="stat-card">
+                <h3>Mis Productos</h3>
+                <p id="totalProductos">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Productos Vendidos</h3>
+                <p id="totalVendidos">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Ganado</h3>
+                <p id="totalGanado">$0</p>
+            </div>
+        </div>
+        
+        <h3>📋 Mis Productos Activos</h3>
+        <div id="misProductos" class="productos-grid">
+            <div class="loading">Cargando tus productos...</div>
+        </div>
+    </div>
+    
+    <!-- Modal para agregar producto -->
+    <div id="addProductModal" class="modal" style="display:none">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('addProductModal')">&times;</span>
+            <h2>Publicar Producto</h2>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>Título del producto *</label>
+                    <input type="text" id="titulo" required placeholder="Ej: iPhone 13 Pro">
+                </div>
+                <div class="form-group">
+                    <label>Categoría *</label>
+                    <select id="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="Electrónica">📱 Electrónica</option>
+                        <option value="Ropa">👕 Ropa</option>
+                        <option value="Hogar">🏠 Hogar</option>
+                        <option value="Deportes">⚽ Deportes</option>
+                        <option value="Otros">📦 Otros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="descripcion" rows="4" placeholder="Describe tu producto..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Precio ($) *</label>
+                    <input type="number" id="precio" step="0.01" required placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Cantidad disponible *</label>
+                    <input type="number" id="stock" value="1" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>URL de la imagen</label>
+                    <input type="url" id="imagenUrl" placeholder="https://ejemplo.com/imagen.jpg">
+                </div>
+                <button type="submit" class="btn-primary">Publicar Producto</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal del Carrito -->
+    <div id="cartModal" class="modal" style="display:none">
+        <div class="modal-content cart-modal">
+            <span class="close" onclick="cerrarModal('cartModal')">&times;</span>
+            <h2>🛒 Mi Carrito de Compras</h2>
+            <div id="cartItems" class="cart-items"></div>
+            <div id="cartTotal" class="cart-total"></div>
+            <button id="checkoutBtn" class="btn-primary btn-checkout" onclick="procesarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 MarketPlace - Todos los derechos reservados</p>
+            <p>Plataforma de compra y venta segura</p>
+        </div>
+    </footer>
+    
+    <script src="dashboard.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

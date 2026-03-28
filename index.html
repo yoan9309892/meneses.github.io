@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketPlace - Compra y Venta Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏪 MarketPlace</h1>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="dashboard.html" id="dashboardLink" style="display:none">Vender</a>
+                <a href="perfil.html" id="perfilLink" style="display:none">Mi Perfil</a>
+                <button id="cartBtn" class="cart-button">🛒 Carrito (<span id="cartCount">0</span>)</button>
+                <button id="authButton" class="btn-primary">Iniciar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h2>Compra y Vende de Forma Segura</h2>
+            <p>Encuentra productos increíbles o vende lo que ya no usas</p>
+        </div>
+
+        <div class="filtros">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar productos por nombre..." class="search-input">
+            <select id="categoriaFilter" class="categoria-select">
+                <option value="">Todas las categorías</option>
+                <option value="Electrónica">📱 Electrónica</option>
+                <option value="Ropa">👕 Ropa</option>
+                <option value="Hogar">🏠 Hogar</option>
+                <option value="Deportes">⚽ Deportes</option>
+                <option value="Otros">📦 Otros</option>
+            </select>
+        </div>
+
+        <div id="productosContainer" class="productos-grid">
+            <div class="loading">Cargando productos...</div>
+        </div>
+    </div>
+
+    <!-- Modal del Carrito -->
+    <div id="cartModal" class="modal" style="display:none">
+        <div class="modal-content cart-modal">
+            <span class="close" onclick="cerrarModal('cartModal')">&times;</span>
+            <h2>🛒 Mi Carrito de Compras</h2>
+            <div id="cartItems" class="cart-items"></div>
+            <div id="cartTotal" class="cart-total"></div>
+            <button id="checkoutBtn" class="btn-primary btn-checkout" onclick="procesarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Modal del Producto -->
+    <div id="productModal" class="modal" style="display:none">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('productModal')">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 MarketPlace - Todos los derechos reservados</p>
+            <p>Plataforma de compra y venta segura</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
